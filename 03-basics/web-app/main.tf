@@ -2,7 +2,7 @@ terraform {
   # Assumes s3 bucket and dynamo DB table already set up
   # See /code/03-basics/aws-backend
   backend "s3" {
-    bucket         = "devops-directive-tf-state"
+    bucket         = "terraform-training-devops-directive-tf-state" ## Your unique bucket name
     key            = "03-basics/web-app/terraform.tfstate"
     region         = "us-east-1"
     dynamodb_table = "terraform-state-locking"
@@ -44,7 +44,7 @@ resource "aws_instance" "instance_2" {
 }
 
 resource "aws_s3_bucket" "bucket" {
-  bucket_prefix = "devops-directive-web-app-data"
+  bucket_prefix = "terraform-training-web-app-data" ## Creating a bucket for your web data  
   force_destroy = true
 }
 
@@ -208,6 +208,7 @@ resource "aws_db_instance" "db_instance" {
   # defined below, but will also result in allowing AWS to auto
   # upgrade the minor version of your DB. This may be too risky
   # in a real production environment.
+  # This is not currently working - create a lab to fix this!!!!!
   auto_minor_version_upgrade = true
   storage_type               = "standard"
   engine                     = "postgres"
